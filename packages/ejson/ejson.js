@@ -564,9 +564,12 @@ EJSON.removedClone = (v) => {
  * @locus Anywhere
  * @param {EJSON} val A value to copy.
  */
-EJSON.clone = (v) => {
-  clones++;
-  logClones();
+EJSON.clone = function Clone(v) {
+  if (Clone.caller !== Clone) {
+    clones++;
+    logClones();
+  }
+
   let ret;
   if (!isObject(v)) {
     return v;
